@@ -1,16 +1,14 @@
 
 
 const express = require('express');
-
 const router = express.Router();
-
-const seriesController = require('../controllers/seriesControllers');
+const seriesControllers = require('../controllers/seriesControllers');
 
 //Endpoints
-router.get("/getAll", SeriesController.getAllSeries);
-router.post("/newSerie", SeriesController.newSerie);
-router.put("/updateSerie", SeriesController.updateSerie);
-router.delete("/deleteSerie", SeriesController.deleteSerie);
+router.get("/getAll", seriesControllers.getAllSeries);
+router.post("/newSerie", seriesControllers.newSerie);
+router.put("/updateSerie", seriesControllers.updateSerie);
+router.delete("/deleteSerie", seriesControllers.deleteSerie);
 
 
 module.exports = router;
