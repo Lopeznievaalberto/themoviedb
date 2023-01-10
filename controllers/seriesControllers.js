@@ -1,5 +1,6 @@
 const serie = require('../models/serie');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Serie = require('../../../prueba1 themovie/models/serie');
 const seriesController = {};
 
 seriesControllers.getAllSeries = async (req, res) => {
@@ -15,6 +16,136 @@ seriesControllers.getAllSeries = async (req, res) => {
     }
 };
 
+seriesControllers.newSerie = async (req, res) => {
+    let id = req.body.id;
+    let tittle = req.body.tittle;
+    let year = req.body.year;
+    let genre = req.body.genre;
+    let rating = req.body.rating;
+
+    try {
+        let result = await Serie.create({ id: id, tittle: tittle, year: year, genre: genre, rating: rating })
+        if (result?.tittle) {
+            res.send({ "Message": `La serie ${result.tittle} se ha añadido con éxito` })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+};
+seriesControllers.updateSerie = async (req, res) => {
+    let id = req.body.id;
+    let tittle = req.body.tittle;
+    let year = req.body.year;
+    let genre = req.body.genre;
+    let rating = req.body.rating;
+
+
+    try {
+
+        let result = await Serie.findByIdAndUpdate(id, {
+            $set: {
+                tittle: newTittle,
+                year: newYear,
+                genre: newGenre,
+                rating: newRating
+            }
+        }).setOptions({ returnDocument: 'after' })
+
+        if (result?.tittle) {
+            res.send(result)
+        }
+
+    } catch (error) {
+        console.log("Error tittle no encontrado", error);
+    }
+}
+seriesControllers.deleteSerie = async (req, res) => {
+    let id = req.body.id;
+
+    try {
+        let result = await Serie.findByIdAndDelete(id);
+        res.send({ "Message": `La serie ${result.tittle} se ha eliminado con éxito` })
+
+    } catch (error) {
+        console.log("Error deleting serie", error);
+
+    }
+};
+
+
+
+
+
+seriesControllers.postSeriesByRating = async (req, res) => {
+    const rating = req.body.rating;
+    try {
+        if (rating <= 10) {
+            const rating = await Serie.find({ rating: rating });
+            res.send({ "Message": "rating subido" });
+        } else {
+            res.send({ "Message": 'rating no válido,${rated}' })
+        }
+    } catch (error) {
+        res.send({ "Message": 'rating/serie not found, ${rated}' })
+    }
+};
+seriesControllers.postSeriesById = async (req, res) => {
+    let id = req.body.id;
+    try {
+        const seriesbyid = await Movie.find({id: id});
+        res.send({ "Message": seriesbyid});
+    
+    } catch (error) {
+        res.send({"Message": `id not register ${id}`})
+    }
+};
+
+seriesControllers.postSeriesByTitle = async (req, res) => {
+    const tittle = req.body.tittle;
+    try {
+        const seriesbytittle = await Serie.find({
+            tittle: tittle
+        })
+        if(seriesbytittle.length === 0){
+            res.send({"Message": `Serie not found, ${tittle} `});
+        }else{
+            res.send(seriesbytittle)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+
+
+seriesControllers.postSeriesByGenre = async (req, res) => {
+    const genre = req.body.genre;
+    try {
+        const seriesbygenre = await Serie.find({
+            genre: genre
+        })
+        if(seriesbygenre.length === 0){
+            res.send({"Message": `Genre not found, ${genre} `});
+        }else{
+            res.send(seriesbygenre)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+module.exports = moviesControllers;
 
 
 
