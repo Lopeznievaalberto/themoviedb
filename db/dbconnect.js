@@ -22,8 +22,6 @@ const dbconnect = () => {
             } else {
                 console.log("mongodb database is connected");
         }});
-
-
 }
 
 module.exports = dbconnect

@@ -13,6 +13,8 @@ router.post("/rating", seriesControllers.postSeriesByRating);
 router.post("/id", seriesControllers.postSeriesById);
 router.post("/tittle", seriesControllers.postSeriesByTittle);
 router.post("/genre", seriesControllers.postSeriesByGenre);
+router.post("/newChapSevenDays", seriesControllers.postnewChapSevenDays);
+router.post("/accessTheatreCinema", seriesControllers.postaccessTheatreCinema);
 
 
 

@@ -14,13 +14,17 @@ const seriesSchema = new Schema ({
         type: Number,   
     },
     genre:{
-        type: String
+        type: String,
     },
-    rating : {
+    rating: {
         type: Number,  
     },
-   
-
+    newChapSevenDays: {
+        type: String,
+    },
+    accessTheatreCinema:{
+        type: String,
+    }
 });
 
 const serie = mongoose.model("serie", seriesSchema);

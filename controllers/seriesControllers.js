@@ -135,20 +135,37 @@ seriesControllers.postSeriesByGenre = async (req, res) => {
     }
 };
 
+seriesControllers.postnewChapSevenDays = async (req, res) => {
+    const SevenDays = req.body.newChapSevenDays;
+    try {
+        const newChapSevenDays = await Serie.find({
+           SevenDays: SevenDays
+        })
+        if(newChapSevenDays.length === 0){
+            res.send({"Message": ` not found, ${SevenDays} `});
+        }else{
+            res.send(newChapSevenDays)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
 
-
-
-
-
-
-
-
-
-
-module.exports = moviesControllers;
-
-
-
+seriesControllers.postaccessTheatreCinema= async (req, res) => {
+    const accessTheatreCinema = req.body.accessTheatreCinema;
+    try {
+        const seriesTheatreCinema = await Serie.find({
+           accessTheatreCinema: accessTheatreCinema
+        })
+        if(seriesTheatreCinema.length === 0){
+            res.send({"Message": ` not found, ${accessTheatreCinema} `});
+        }else{
+            res.send(seriesTheatreCinema)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 
 
@@ -162,26 +179,3 @@ module.exports = moviesControllers;
 
 
 module.exports = seriesControllers;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
