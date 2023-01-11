@@ -17,13 +17,9 @@ moviesControllers.getAllMovies = async (req, res) => {
 };
 
 moviesControllers.newMovie = async (req, res) => {
-    let id = req.body.id;
-    let tittle = req.body.tittle;
-    let year = req.body.year;
-    let genre = req.body.genre;
-    let rating = req.body.rating;
     try {
-        let result = await Movie.create({ id: id, tittle: tittle, year: year, genre: genre, rating: rating })
+        let result = await Movie.create({ tittle: req.body.tittle, year: req.body.year, genre: req.body.genre, 
+            rating: req.body.rating })
         if (result?.tittle) {
             res.send({ "Message": `La película ${result.tittle} se ha añadido con éxito` })
         }

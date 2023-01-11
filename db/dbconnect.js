@@ -9,7 +9,7 @@ const dbconnect = () => {
 
     //URI
     //const conn_str = process.env.URI;
-    const conn_str = `mongodb+srv://carmanager:YXpsfN66GYCrLLAP@dbhive.cu5o7.mongodb.net/carsMadrid?retryWrites=true&w=majority`;
+    const conn_str = "mongodb+srv://Alberto:Mongodb123.@cluster0.wjasvao.mongodb.net/?retryWrites=true&w=majority";
 
     mongoose.connect(
         conn_str,
@@ -24,4 +24,4 @@ const dbconnect = () => {
         }});
 }
 
-module.exports = dbconnect
+module.exports = dbconnect;
